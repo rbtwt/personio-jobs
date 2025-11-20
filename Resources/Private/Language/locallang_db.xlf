@@ -42,6 +42,9 @@
 			<trans-unit id="tx_personiojobs_domain_model_job.office">
 				<source>Office</source>
 			</trans-unit>
+			<trans-unit id="tx_personiojobs_domain_model_job.additional_offices">
+				<source>Additional Offices</source>
+			</trans-unit>
 			<trans-unit id="tx_personiojobs_domain_model_job.department">
 				<source>Department</source>
 			</trans-unit>

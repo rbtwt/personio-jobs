@@ -156,6 +156,16 @@ return [
                 'max' => 255,
             ],
         ],
+        'additional_offices' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:personio_jobs/Resources/Private/Language/locallang_db.xlf:tx_personiojobs_domain_model_job.additional_offices',
+            'config' => [
+                'type' => 'input',
+                'size' => 60,
+                'eval' => 'trim',
+                'max' => 255,
+            ],
+        ],
         'department' => [
             'exclude' => true,
             'label' => 'LLL:EXT:personio_jobs/Resources/Private/Language/locallang_db.xlf:tx_personiojobs_domain_model_job.department',
@@ -287,6 +297,7 @@ return [
                 --div--;LLL:EXT:personio_jobs/Resources/Private/Language/locallang_db.xlf:tabs.job,
                     subcompany,
                     office,
+                    additional_offices,
                     department,
                     recruiting_category,
                     employment_type,

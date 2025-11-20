@@ -8,6 +8,7 @@ CREATE TABLE tx_personiojobs_domain_model_job(
 	personio_id int(11) unsigned default '0' not null,
 	subcompany varchar(255) default '' not null,
 	office varchar(255) default '' not null,
+	additional_offices varchar(255) default '' not null,
 	department varchar(255) default '' not null,
 	recruiting_category varchar(255) default '' not null,
 	name text,

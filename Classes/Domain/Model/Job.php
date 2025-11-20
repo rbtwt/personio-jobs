@@ -45,6 +45,7 @@ class Job extends AbstractEntity implements \JsonSerializable
     protected int $personioId = 0;
     protected string $subcompany = '';
     protected string $office = '';
+    protected string $additionalOffices = '';
     protected string $department = '';
     protected string $recruitingCategory = '';
     protected string $name = '';
@@ -71,12 +72,14 @@ class Job extends AbstractEntity implements \JsonSerializable
 
     /**
      * @param array{jobDescription: list<JobDescription>} $jobDescriptions
+     * @param array{office: string|list<string>} $additionalOffices
      */
     #[Constructor]
     public static function fromApiResponse(
         int $id,
         ?string $subcompany,
         ?string $office,
+        array $additionalOffices,
         ?string $department,
         ?string $recruitingCategory,
         string $name,
@@ -97,6 +100,13 @@ class Job extends AbstractEntity implements \JsonSerializable
         $job->department = (string)$department;
         $job->recruitingCategory = (string)$recruitingCategory;
         $job->name = $name;
+
+        $offices = $additionalOffices['office'] ?? [];
+        if (is_string($offices)) {
+            $offices = [$offices];
+        }
+
+        $job->additionalOffices = implode(', ', $offices);
 
         foreach ($jobDescriptions['jobDescription'] as $jobDescription) {
             $jobDescription->setJob($job);
@@ -163,6 +173,18 @@ class Job extends AbstractEntity implements \JsonSerializable
     public function setOffice(string $office): self
     {
         $this->office = $office;
+
+        return $this;
+    }
+
+    public function getAdditionalOffices(): string
+    {
+        return $this->additionalOffices;
+    }
+
+    public function setAdditionalOffices(string $additionalOffices): self
+    {
+        $this->additionalOffices = $additionalOffices;
 
         return $this;
     }
@@ -352,6 +374,7 @@ class Job extends AbstractEntity implements \JsonSerializable
             'personioId' => $this->personioId,
             'subcompany' => $this->subcompany,
             'office' => $this->office,
+            'additionalOffices' => $this->additionalOffices,
             'department' => $this->department,
             'recruitingCategory' => $this->recruitingCategory,
             'name' => $this->name,
